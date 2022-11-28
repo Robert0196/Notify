@@ -22,6 +22,14 @@ export default function AddNotice() {
     setOpen(false);
   };
 
+  const handleSave = () => {
+    //add new notice to personal
+    
+
+    setOpen(false);
+  };
+
+
   return (
     <div>
       <Box sx={{ '& > :not(style)': { m: 1 } }}>
@@ -41,7 +49,7 @@ export default function AddNotice() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Add</Button>
+          <Button onClick={handleSave}>Add</Button>
         </DialogActions>
       </Dialog>
     </div>
