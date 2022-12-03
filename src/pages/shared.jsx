@@ -13,7 +13,6 @@ export default function Personal() {
           Licznik {count}
         </button>
       </div>
-
         <AddNotice />
     </div>
   )

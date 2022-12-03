@@ -5,7 +5,7 @@ import NoticeCard from '../components/noticeCard.jsx'
 
 export default function Personal() {
     const [count, setCount] = useState(0)
-    const [notatki, setNotatki] = useState([])
+    const [notatki, setNotatki] = useState([<NoticeCard key={0}/>])
     const [notatka, setNotatka] = useState({
         title: '',
         content: '',
@@ -16,24 +16,16 @@ export default function Personal() {
     })
 
     function addNotice() {
-        setNotatki([...notatki, notatka])
-        setNotatka({
-            title: '',
-            content: '',
-            date: '',
-            time: '',
-            color: '',
-            id: ''
-        })
+        setNotatki([...notatki, <NoticeCard key={notatki.length} />])
     }
 
     return (
         <div className="App">
             <h2>Personal</h2>
             <div className="card">
-                <NoticeCard />
+               {notatki}
             </div>
-            <AddNotice />
+            <AddNotice add={addNotice}/>
         </div>
     )
 }

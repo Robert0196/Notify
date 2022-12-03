@@ -11,7 +11,10 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { CKEditor } from 'ckeditor4-react';
 
-export default function AddNotice() {
+export default function AddNotice(props) {
+
+  console.log(props)
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -24,28 +27,31 @@ export default function AddNotice() {
 
   const handleSave = () => {
     //add new notice to personal
-    
-
     setOpen(false);
+    props.add()
   };
 
 
   return (
     <div>
       <Box sx={{ '& > :not(style)': { m: 1 } }}>
-      <Fab color="primary" aria-label="add" sx={{ position: 'absolute', bottom: 60, right: 16 }} onClick={handleClickOpen}>
-        <AddIcon />
-      </Fab>
-    </Box>
+        <Fab color="primary" aria-label="add" sx={{ position: 'fixed', bottom: 60, right: 16 }} onClick={handleClickOpen}>
+          <AddIcon />
+        </Fab>
+      </Box>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>New notice</DialogTitle>
         <DialogContent>
           <CKEditor
-                // initData=""
-                onInstanceReady={ () => {
-                    console.log( 'Editor is ready!' );
-                } }
-            />
+            // initData=""
+            onInstanceReady={() => {
+              console.log('Editor is ready!');
+            }}
+            onChange={({editor}) => {
+              console.log( 'Custom event:', editor.getData() );
+              console.log( 'Custom event1:', editor );
+          } }
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
